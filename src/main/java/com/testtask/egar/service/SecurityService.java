@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -32,7 +33,9 @@ public class SecurityService {
 
     @Transactional
     public List<Security> findAll() {
-        return securityRepository.findAll();
+        List<Security> out = securityRepository.findAll();
+        out.sort(Comparator.comparing(Security::getDate));
+        return out;
     }
 
     @Transactional
