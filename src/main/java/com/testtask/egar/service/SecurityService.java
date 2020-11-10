@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SecurityService {
@@ -33,9 +34,11 @@ public class SecurityService {
 
     @Transactional
     public List<Security> findAll() {
-        List<Security> out = securityRepository.findAll();
-        out.sort(Comparator.comparing(Security::getDate));
-        return out;
+
+        return securityRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(Security::getDate))
+                .collect(Collectors.toList());
     }
 
     @Transactional

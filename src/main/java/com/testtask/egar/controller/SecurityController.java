@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.DELETE, RequestMethod.PUT})
 public class SecurityController {
@@ -19,26 +21,26 @@ public class SecurityController {
     }
 
     @GetMapping("/")
-    public ResponseEntity main() {
+    public ResponseEntity<List<Security>> main() {
 
         return ResponseEntity.ok(securityService.findAll());
 
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity addSecurity(@RequestBody Security security) {
+    public ResponseEntity<List<Security>> addSecurity(@RequestBody Security security) {
         securityService.save(security);
         return ResponseEntity.ok(securityService.findAll());
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public ResponseEntity deleteSecurity(@RequestBody Security security) {
+    public ResponseEntity<List<Security>> deleteSecurity(@RequestBody Security security) {
         securityService.delete(security);
         return ResponseEntity.ok(securityService.findAll());
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity updateSecurity(@RequestBody Security security) {
+    public ResponseEntity<List<Security>> updateSecurity(@RequestBody Security security) {
         securityService.update(security);
         return ResponseEntity.ok(securityService.findAll());
     }
