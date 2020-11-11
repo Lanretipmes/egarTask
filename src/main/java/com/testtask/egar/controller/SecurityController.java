@@ -21,7 +21,7 @@ public class SecurityController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<Security>> main() {
+    public ResponseEntity<List<Security>> getAllSecurities() {
 
         return ResponseEntity.ok(securityService.findAll());
 

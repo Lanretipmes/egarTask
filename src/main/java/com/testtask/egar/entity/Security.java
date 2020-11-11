@@ -1,5 +1,6 @@
 package com.testtask.egar.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Table(name = "securities")
 @NoArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class Security {
 
     @Id
